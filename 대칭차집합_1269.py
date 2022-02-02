@@ -1,0 +1,5 @@
+A_count, B_count = map(int, input().split())
+A = list(map(int, input().split()))
+B = list(map(int, input().split()))
+C = set(A) & set(B)
+print(A_count + B_count - 2 * len(list(C)))
