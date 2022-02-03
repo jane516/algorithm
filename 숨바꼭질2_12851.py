@@ -19,4 +19,3 @@ while queue:
                 queue.append(i)
 print(visited[K])
 print(count + 1)
-
