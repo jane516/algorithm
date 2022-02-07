@@ -2,22 +2,24 @@ S = list(input())
 T = list(input())
 
 
-def AB(S, T):
-    str1 = T
-    str2 = T
+def AB1(S, T):
     if len(S) == len(T):
-        if str1 == S or str2 == S:
+        if T == S:
             print(1)
-            return
-    else:
-        str1.pop()
-        str2.reverse()
-        str2.pop()
-        AB(S, str1)
-        AB(S, str2)
+            exit(0)
+        return
+
+    str1 = T
+    str1.pop()
+    T1 = str1
+    str2 = T
+    str2.reverse()
+    str2.pop()
+    T2 = str2
+    return AB1(S, T1), AB1(S, T2)
 
 
-AB(S, T)
+AB1(S, T)
 print(0)
 
 
