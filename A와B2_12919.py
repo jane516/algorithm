@@ -1,26 +1,32 @@
-S = list(input())
-T = list(input())
+S = input()
+T = input()
 
 
-def AB1(S, T):
-    if len(S) == len(T):
-        if T == S:
-            print(1)
-            exit(0)
-        return
+def AB(s, t):
+    if s == t:
+        print(1)
+        exit(0)
+    if list(t)[-1] == 'A' and len(t) > len(s):
+        t1 = list(t)
+        t1.pop()
+        AB(s, str(''.join(t1)))
 
-    str1 = T
-    str1.pop()
-    T1 = str1
-    str2 = T
-    str2.reverse()
-    str2.pop()
-    T2 = str2
-    return AB1(S, T1), AB1(S, T2)
+    if list(t)[0] == 'B' and len(t) > len(s):
+        t2 = list(t)
+        t2.reverse()
+        t2.pop()
+        AB(s, str(''.join(t2)))
 
 
-AB1(S, T)
+AB(S, T)
 print(0)
+
+
+
+
+
+
+
 
 
 
