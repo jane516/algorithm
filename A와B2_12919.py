@@ -5,7 +5,7 @@ T = input()
 def AB(s, t):
     if s == t:
         print(1)
-        exit(0)
+        exit()
     if list(t)[-1] == 'A' and len(t) > len(s):
         t1 = list(t)
         t1.pop()
