@@ -3,7 +3,7 @@ def matrix_multi(arr1, arr2):
     for i in range(len(arr1)):
         for j in range(len(arr2[0])):
             for k in range(len(arr1[0])):
-                result[i][j] += arr1[i][k] * arr2[k][j]
+                result[i][j] += arr1[i][k] * arr2[k][j] % 10000
     return result
 
 
@@ -19,9 +19,10 @@ def power(Matrix, n):
             return matrix_multi(temp, Matrix)
 
 
-n = int(input())
-arr = [[3, 5], [1, 3]]
-my_arr = power(arr, n-1)
-A = (my_arr[0][0] * 3 + my_arr[0][1])
-B = int(((my_arr[1][0] * 3 + my_arr[1][1])**2 * 5)**0.5)
-print(A + B)
+T = int(input())
+for i in range(T):
+    n = int(input())
+    arr = [[6, -4], [1, 0]]
+    my_arr = power(arr, n - 1)
+    A = my_arr[0][0] * 6 + my_arr[0][1] * 2
+    print('Case #{}: {:03}'.format(i + 1, (A - 1) % 1000))
