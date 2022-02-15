@@ -1,4 +1,4 @@
-mod = 1000000007
+import sys
 
 
 def matrix_multi(arr1, arr2):
@@ -6,7 +6,7 @@ def matrix_multi(arr1, arr2):
     for i in range(len(arr1)):
         for j in range(len(arr2[0])):
             for k in range(len(arr1[0])):
-                result[i][j] += (arr1[i][k] * arr2[k][j]) % mod
+                result[i][j] += arr1[i][k] * arr2[k][j] % 1000000000
     return result
 
 
@@ -22,14 +22,23 @@ def power(Matrix, n):
             return matrix_multi(temp, Matrix)
 
 
-n = int(input())
-arr = [[4, - 1], [1, 0]]
-if n % 2 == 1:
-    print(0)
+case = sys.stdin.readline().strip().split()
+a, b = int(case[0]), int(case[1])
+arr = [[1, 1], [1, 0]]
+an = 0
+bn = 0
+p = 0
+q = 0
+if a == 1:
+    an = 1
 else:
-    if n == 2:
-        print(3)
-    else:
-        my_arr = power(arr, n // 2 - 1)
-        answer = my_arr[0][0] * 3 + my_arr[0][1]
-        print(answer % mod)
+    an = power(arr, a - 1)[0][0]
+if a - b + 1 == 1:
+    p = 1
+else:
+    p = power(arr, b - a)[0][0]
+
+bn = power(arr, a)[0][0]
+q = power(arr, b - a + 1)[0][0]
+result = p * an + (q - 1) * bn
+print(result % 1000000000)
