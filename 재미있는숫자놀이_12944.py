@@ -13,3 +13,4 @@ for i in range(N + 1):
             for k in range(j, N + 1, j):
                 result[k] = 0
 print(N - result[1:].count(1))
+
