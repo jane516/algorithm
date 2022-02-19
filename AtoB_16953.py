@@ -1,28 +1,27 @@
 import sys
-from collections import deque
 case = sys.stdin.readline().strip().split()
 A, B = int(case[0]), int(case[1])
-visited = []
-queue = deque([A])
+count = 0
 check = 0
-while queue:
-    X = queue.popleft()
-    k = 0
-    if X > B:
+while True:
+    if A == B:
+        break
+    elif B < A:
         check = 1
         break
-    if X == B:
-        print(visited[1])
+    if B % 2 == 0:
+        B //= 2
+        count += 1
+    elif B % 10 == 1:
+        B //= 10
+        count += 1
+    else:
+        check = 1
         break
-    dX = [2 * X, 10 * X + 1]
-    for i in dX:
-        if i <= B:
-            if i not in visited:
-                k += 1
-                visited.append([i, k])
-                queue.append(i)
-if B not in visited:
+if check == 1:
     print(-1)
+else:
+    print(count + 1)
 
 
 
