@@ -1,12 +1,14 @@
-import sys
 import math
-N = int(sys.stdin.readline().strip())
+N = input()
 Sum = 0
-i = 1
-while True:
-    if Sum >= int(math.log10(N)):
-        break
-    Sum += math.log10(i)
-    i += 1
-print(i - 1)
-print(len(str(N)))
+i = 0
+dic = {'1': 1, '2': 2, '6': 3, '24': 4, '120': 5, '720': 6}
+if N in dic.keys():
+    print(dic[N])
+else:
+    while True:
+        if Sum >= len(N) - 1:
+            break
+        i += 1
+        Sum += math.log10(i)
+    print(i)
