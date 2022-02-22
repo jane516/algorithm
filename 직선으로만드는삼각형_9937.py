@@ -22,9 +22,9 @@ for i in range(N):
     elif ABC_list[i][1] == 0:
         tan_list.append('x')
     else:
-        GCD = gcd(ABC_list[i][0], ABC_list[i][1])
         if ABC_list[i][0] < 0:
             ABC_list[i][0], ABC_list[i][1] = - ABC_list[i][0], - ABC_list[i][1]
+        GCD = gcd(ABC_list[i][0], ABC_list[i][1])
         ABC_list[i][0], ABC_list[i][1] = ABC_list[i][0] // GCD, ABC_list[i][1] // GCD
 
 
