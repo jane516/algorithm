@@ -12,30 +12,24 @@ def gcd(a, b):
 
 N = int(input())
 ABC_list = [[0 for _ in range(3)] for _ in range(N)]
-tan_list = []
+dic = {'x': 0, 'y': 0}
 Sum = 0
 for i in range(N):
     case = sys.stdin.readline().strip().split()
     ABC_list[i][0], ABC_list[i][1], ABC_list[i][2] = int(case[0]), int(case[1]), int(case[2])
     if ABC_list[i][0] == 0:
-        tan_list.append('y')
+        dic['y'] += 1
     elif ABC_list[i][1] == 0:
-        tan_list.append('x')
+        dic['x'] += 1
     else:
         if ABC_list[i][0] < 0:
             ABC_list[i][0], ABC_list[i][1] = - ABC_list[i][0], - ABC_list[i][1]
         GCD = gcd(ABC_list[i][0], ABC_list[i][1])
         ABC_list[i][0], ABC_list[i][1] = ABC_list[i][0] // GCD, ABC_list[i][1] // GCD
+        dic.append([ABC_list[i][0], ABC_list[i][1]])
 
-
-
-
-    if ABC_list[i][1] == 0:
-        tan_list.append('x')
-    else:
-        tan_list.append(ABC_list[i][0] / ABC_list[i][1])
 my_list = list(set(tan_list))
-dic = {my_list[i]: tan_list.count(my_list[i]) for i in range(len(my_list))}
+dic = {my_list[i]: dic.count(my_list[i]) for i in range(len(my_list))}
 for i in dic.values():
     if i >= 2:
         Sum += ((N - i) * (i * (i - 1) // 2) + i * (i - 1) * (i - 2) // 6) % 1000000007
