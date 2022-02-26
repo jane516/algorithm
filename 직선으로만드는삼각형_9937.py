@@ -26,10 +26,11 @@ for i in range(N):
             ABC_list[i][0], ABC_list[i][1] = - ABC_list[i][0], - ABC_list[i][1]
         GCD = gcd(ABC_list[i][0], ABC_list[i][1])
         ABC_list[i][0], ABC_list[i][1] = ABC_list[i][0] // GCD, ABC_list[i][1] // GCD
-        dic.append([ABC_list[i][0], ABC_list[i][1]])
+        if (ABC_list[i][0], ABC_list[i][1]) in dic:
+            dic[(ABC_list[i][0], ABC_list[i][1])] += 1
+        else:
+            dic[(ABC_list[i][0], ABC_list[i][1])] = 1
 
-my_list = list(set(tan_list))
-dic = {my_list[i]: dic.count(my_list[i]) for i in range(len(my_list))}
 for i in dic.values():
     if i >= 2:
         Sum += ((N - i) * (i * (i - 1) // 2) + i * (i - 1) * (i - 2) // 6) % 1000000007
