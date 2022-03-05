@@ -13,15 +13,23 @@ for i in range(N):
 dic.items()
 dic = sorted(dic.items(), key=lambda x: x[1], reverse=True)
 Sum = 0
-k = 9
-print(dic)
-print(dic[0:len(dic)-2])
-for i in dic[0:len(dic)-2]:
-    Sum += k * i[1]
-    k -= 1
-if dic[-1][0] in my_list:
-    Sum += dic[-1][1]
+if len(dic) == 10 and dic[-1][0] in my_list:
+    k = 1
+    for i in range(len(dic)):
+        X = dic.pop()
+        if X[0] not in my_list:
+            break
+        else:
+            Sum += X[1] * k
+            k += 1
+    for i in range(len(dic)):
+        X = dic.pop()
+        Sum += X[1] * k
+        k += 1
 else:
-    Sum += dic[-2][1]
-print(my_list)
+    k = 9
+    for i in dic:
+        Sum += i[1] * k
+        k -= 1
+
 print(Sum)
