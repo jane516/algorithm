@@ -5,7 +5,6 @@ N = int(sys.stdin.readline().strip())
 dp = [6 for _ in range(N + 1)]
 dp[0] = 0
 
-
 for i in range(708):
     for j in range(육각수[i], N + 1):
         if 육각수[i] <= j:
