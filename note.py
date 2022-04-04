@@ -1,3 +1,3 @@
-a = [1, 2, 3]
-a[0] = 2
-print(a)
+a = [1, 2, 3, 4]
+X = len(set(a))
+print(X)

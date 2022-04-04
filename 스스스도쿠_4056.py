@@ -17,8 +17,13 @@ for i in range(T):
                 exit(0)
             Count += 1
     if Count == 5:
+        b = [[0 for _ in range(9)] for _ in range(9)]
         for j in range(9):
-            if sum(a[j]) != 45:
+            for k in range(9):
+                b[j][k] = a[k][j]
+        for j in range(9):
+            if sum(a[j]) != 45 or len(set(a[j])) != 9 \
+                    or sum(b[j]) != 45 or len(set(b[j])) != 9:
                 print('Could not complete this grid.')
                 if i < T - 1:
                     print()
@@ -50,8 +55,13 @@ for i in range(T):
                     exit(0)
                 Count += 1
         if Count == 5:
+            b = [[0 for _ in range(9)] for _ in range(9)]
             for j in range(9):
-                if sum(a[j]) != 45:
+                for k in range(9):
+                    b[j][k] = a[k][j]
+            for j in range(9):
+                if sum(a[j]) != 45 or len(set(a[j])) != 9 \
+                        or sum(b[j]) != 45 or len(set(b[j])) != 9:
                     print('Could not complete this grid.')
                     if i < T - 1:
                         print()
@@ -85,8 +95,13 @@ for i in range(T):
                             exit(0)
                         Count += 1
             if Count == 5:
+                b = [[0 for _ in range(9)] for _ in range(9)]
                 for j in range(9):
-                    if sum(a[j]) != 45:
+                    for k in range(9):
+                        b[j][k] = a[k][j]
+                for j in range(9):
+                    if sum(a[j]) != 45 or len(set(a[j])) != 9 \
+                            or sum(b[j]) != 45 or len(set(b[j])) != 9:
                         print('Could not complete this grid.')
                         if i < T - 1:
                             print()
