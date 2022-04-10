@@ -30,14 +30,10 @@ for i in range(T):
                 for k in range(9):
                     if k == 8:
                         print(a[j][k])
-                        break
-                    print(a[j][k], end='')
+                    else:
+                        print(a[j][k], end='')
             print()
-    if 종료 == 1:
-        print('Could not complete this grid.')
-        print()
-        break
-    else:
+    elif Count < 5 and 종료 == 0:
         for j in range(9):
             Sum = 0
             check = 0
@@ -66,16 +62,12 @@ for i in range(T):
             if 종료 == 0:
                 for j in range(9):
                     for k in range(9):
-                        if k == 8 and 종료 == 0:
+                        if k == 8:
                             print(a[j][k])
-                            break
-                        print(a[j][k], end='')
+                        else:
+                            print(a[j][k], end='')
                 print()
-        if 종료 == 1:
-            print('Could not complete this grid.')
-            print()
-            break
-        else:
+        elif Count < 5 and 종료 == 0:
             for l in range(3):
                 for j in range(3):
                     check = 0
@@ -108,9 +100,9 @@ for i in range(T):
                         for k in range(9):
                             if k == 8:
                                 print(a[j][k])
-                                break
-                            print(a[j][k], end='')
+                            else:
+                                print(a[j][k], end='')
                     print()
-            else:
-                print('Could not complete this grid.')
-                print()
+    if 종료 == 1 or Count < 5:
+        print('Could not complete this grid.')
+        print()
