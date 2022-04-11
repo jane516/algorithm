@@ -2,7 +2,7 @@ import sys
 sys.setrecursionlimit(10**6)
 case1 = sys.stdin.readline().strip().split()
 n, m = int(case1[0]), int(case1[1])
-visited = [i for i in range(n + 1)]
+visited = {i: i for i in range(n + 1)}
 
 
 def find(x):
