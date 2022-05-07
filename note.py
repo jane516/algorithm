@@ -1,32 +1,8 @@
-import sys
-N = int(sys.stdin.readline().strip())
-xy_list = [[0, 0] for _ in range(N)]
-xy_list2 = xy_list[:]
-for i in range(N):
-    case = sys.stdin.readline().strip().split()
-    xy_list[i] = [int(case[0]), int(case[1])]
-    xy_list2[i] = [int(case[1]), int(case[0])]
-xy_list.sort()
-xy_list2.sort()
+import math
+import sympy
 
 
-def cross_product(x1, y1, x2, y2, x3, y3):
-    P = x1 * y2 + x2 * y3 + x3 * y1
-    M = x2 * y1 + x3 * y2 + x1 * y3
-    return P - M
+def f(x):
+    X = x**3 + 3 * x**2 + x - 1
+    return X
 
-
-my_list = [[0, 0, 0, 0] for _ in range(N - 1)]
-x1, y1 = xy_list[0][0], xy_list[0][1]
-if xy_list2[0] == xy_list[0]:
-    x2, y2 = xy_list2[1][1], xy_list2[1][0]
-else:
-    x2, y2 = xy_list2[0][1], xy_list2[0][0]
-d1 = (x2 - x1) ** 2 + (y2 - y1) ** 2
-v1 = [x2 - x1, y2 - y1]
-for i in range(1, N):
-    x3, y3 = xy_list[i][0], xy_list[i][1]
-    d2 = (x3 - x1) ** 2 + (y3 - y1) ** 2
-    v2 = [x3 - x1, y3 - y1]
-print(xy_list)
-print(xy_list2)
