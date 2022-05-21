@@ -1,8 +1,5 @@
-import math
-import sympy
-
-
-def f(x):
-    X = x**3 + 3 * x**2 + x - 1
-    return X
-
+import sys
+from itertools import combinations
+N = int(sys.stdin.readline().strip())
+result = []
+for i in combinations()
