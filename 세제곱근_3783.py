@@ -15,4 +15,11 @@ for i in range(T):
             r = m
 
     answer = str(x)
-    print(answer)
+    if '.' in answer:
+        k = answer.index('.')
+        if len(answer[k+1:]) > 10:
+            print(answer[:k+11])
+        else:
+            print(answer)
+    else:
+        print(answer)
