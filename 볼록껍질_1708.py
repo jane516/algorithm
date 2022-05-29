@@ -1,9 +1,8 @@
 import sys
 N = int(sys.stdin.readline().strip())
 xy_list = [list(map(int, sys.stdin.readline().strip().split())) for _ in range(N)]
-xy_list2 = [[xy_list[i][1], xy_list[i][0]] for i in range(N)]
-xy_list2.sort()
-x, y = xy_list2[0][1], xy_list2[0][0]
+xy_list.sort(key=lambda x: (x[1], x[0]))
+x, y = xy_list[0][0], xy_list[0][1]
 
 
 def cross_product(x1, y1, x2, y2, x3, y3):
