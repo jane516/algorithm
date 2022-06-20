@@ -1,5 +1,6 @@
 import sys
 K, L = map(int, sys.stdin.readline().strip().split())
+check = 0
 
 
 def prime_list(n):
@@ -12,13 +13,14 @@ def prime_list(n):
     return [i for i in range(2, n+1) if sieve[i] == True]
 
 
-my_list = prime_list(K)
+my_list = prime_list(L - 1)
 
-for i in range(2, int(K ** 0.5) + 1):
+for i in my_list:
     a = K % i
-    if a == 0 and i >= L:
-        print('GOOD')
-        break
-    elif a == 0 and i < L:
+    if a == 0:
         print('BAD', i)
+        check = 1
         break
+
+if check == 0:
+    print('GOOD')
