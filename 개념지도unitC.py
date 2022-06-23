@@ -148,6 +148,7 @@ result = defaultdict(set)
 for i in range(1, N + 1):
     for j in range(1, N + 1):
         if my_matrix[i][j] == 1:
-            result[reversed_dic[i]].add(reversed_dic[j])
+            if reversed_dic[j] != reversed_dic[i]:
+                result[reversed_dic[i]].add(reversed_dic[j])
 for a, b in result.items():
     print(names[a[0]][int(a[1:])], [names[c[0]][int(c[1:])]for c in sorted(b, key=lambda x:(x[0], int(x[1:])))])
