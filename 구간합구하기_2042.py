@@ -6,7 +6,8 @@ def init(node, start, end):
         tree[node] = l[start]
         return tree[node]
     else:
-        tree[node] = init(node * 2, start, (start + end) // 2) + init(node * 2 + 1, (start + end) // 2 + 1, end)
+        tree[node] = init(node * 2, start, (start + end) // 2) \
+                     + init(node * 2 + 1, (start + end) // 2 + 1, end)
         return tree[node]
 
 
