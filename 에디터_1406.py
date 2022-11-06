@@ -12,14 +12,12 @@ for _ in range(M):
         if S:
             X = S.pop()
             my_list.append(X)
-        else:
-            continue
+        continue
     elif order[0] == 'D':
         if my_list:
             X = my_list.pop()
             S.append(X)
-        else:
-            continue
+        continue
     else:
         if S:
             S.pop()
