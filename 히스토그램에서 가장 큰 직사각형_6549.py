@@ -1,20 +1,34 @@
 import sys
 
-tree = [0] * 100000
-l = [2, 1, 4, 5, 2, 4, 2, 3]
+while True:
+    stack = []
 
+    Max = 0
+    h_list = list(map(int, sys.stdin.readline().strip().split()))
+    n = h_list[0]
 
-def init(node, start, end):
-    if start == end:
-        tree[node] = l[start]
-        return tree[node]
-    else:
-        tree[node] = min(init(node * 2, start, (start + end) // 2), init(node * 2 + 1, (start + end) // 2 + 1, end))
-        return tree[node]
+    if n == 0:
+        break
 
+    h_list = h_list[1:]
+    for i in range(n):
+        while len(stack) != 0 and h_list[stack[-1]] >= h_list[i]:
+            idx = stack.pop()
 
-init(1, 0, len(l)-1)
-print(tree[:16])
+            if len(stack) == 0:
+                width = i
+            else:
+                width = i - stack[-1] - 1
+            Max = max(Max, width * h_list[idx])
+        stack.append(i)
 
+    while len(stack) != 0:
+        idx = stack.pop()
 
-heights = [1, 2, 3, 4, 5]
+        if len(stack) == 0:
+            width = n
+        else:
+            width = n - stack[-1] - 1
+        Max = max(Max, width * h_list[idx])
+
+    print(Max)
