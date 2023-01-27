@@ -139,7 +139,7 @@ def merge_sort(my_list):
     list1 = merge_sort(my_list[:mid])
     list2 = merge_sort(my_list[mid:])
 
-    i, j, k = 0, 0, 0
+    i, j = 0, 0
     arr = []
 
     while i < len(list1) and j < len(list2):
