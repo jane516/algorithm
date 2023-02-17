@@ -1,108 +1,89 @@
-T = int(input())
-for i in range(T):
-    a = [[0 for _ in range(9)] for _ in range(9)]
-    Count = 0
-    종료 = 0
-    for j in range(9):
-        number_list = list(input())
-        for k in range(9):
-            a[j][k] = int(number_list[k])
-    for j in range(9):
-        if a[j].count(0) == 1:
-            idx = a[j].index(0)
-            a[j][idx] = 45 - sum(a[j])
-            if a[j][idx] <= 0:
-                종료 = 1
-                break
-            Count += 1
-    if Count == 5 and 종료 == 0:
-        b = [[0 for _ in range(9)] for _ in range(9)]
-        for j in range(9):
-            for k in range(9):
-                b[j][k] = a[k][j]
-        for j in range(9):
-            if sum(a[j]) != 45 or len(set(a[j])) != 9 \
-                    or sum(b[j]) != 45 or len(set(b[j])) != 9:
-                종료 = 1
-                break
-        if 종료 == 0:
+import sys
+from pprint import pprint
+
+sys.setrecursionlimit(10000)
+input = sys.stdin.readline
+
+N = int(input().strip())
+
+
+def is_square_valid(arr, x, y, n):
+    x_start = ((x-1) // 3) * 3 + 1
+    y_start = ((y-1) // 3) * 3 + 1
+
+    for i in range(x_start, x_start + 3):
+        for j in range(y_start, y_start + 3):
+            if arr[i][j] == n:
+                return False
+    return True
+
+
+def is_vertical_valid(arr, x, y, n):
+    for i in range(1, 10):
+        if arr[i][y] == n:
+            return False
+    return True
+
+
+def is_horizontal_valid(arr, x, y, n):
+    for i in range(1, 10):
+        if arr[x][i] == n:
+            return False
+    return True
+
+
+def find(arr, remains, cnt):
+    global found
+
+    if cnt == 5:
+        found = True
+        return arr
+
+    for j in range(cnt, 5):
+        x, y = remains[j]
+
+        for i in range(1, 10):
+            if not is_vertical_valid(arr, x, y, i):
+                continue
+            if not is_horizontal_valid(arr, x, y, i):
+                continue
+            if not is_square_valid(arr, x, y, i):
+                continue
+            arr[x][y] = i
+            cnt += 1
+            if result := find(arr, remains, cnt):
+                return result
+            arr[x][y] = 0
+            cnt -= 1
+
+
+for _ in range(N):
+    boards = [[0 for _ in range(10)] for _ in range(10)]
+    zeros = []
+    for i in range(9):
+        for j, c in enumerate(input().strip()):
+            num = int(c)
+            if num == 0:
+                zeros.append((i+1, j+1))
+            boards[i+1][j+1] = num
+    found = False
+    find(boards, zeros, 0)
+    if found:
+        for i in range(1, 10):
+            Sum1, Sum2, Sum3 = 0, 0, 0
+            for j in range(1, 10):
+                Sum1 += boards[i][j]
+                Sum2 += boards[j][i]
+            for k in range(3):
+                for l in range(3):
+                    Sum3 += boards[((i-1)//3)*3+1+k][((i-1)%3)*3+l+1]
+            if Sum1 != 45 or Sum2 != 45 or Sum3 != 45:
+                found = False
+    if found:
+        for i in range(9):
             for j in range(9):
-                for k in range(9):
-                    if k == 8:
-                        print(a[j][k])
-                    else:
-                        print(a[j][k], end='')
+                print(boards[i+1][j+1], end='')
             print()
-    elif Count < 5 and 종료 == 0:
-        for j in range(9):
-            Sum = 0
-            check = 0
-            idx = 0
-            for k in range(9):
-                Sum += a[k][j]
-                if a[k][j] == 0:
-                    idx = k
-                    check += 1
-            if check == 1:
-                a[idx][j] = 45 - Sum
-                if a[idx][j] <= 0:
-                    종료 = 1
-                    break
-                Count += 1
-        if Count == 5 and 종료 == 0:
-            b = [[0 for _ in range(9)] for _ in range(9)]
-            for j in range(9):
-                for k in range(9):
-                    b[j][k] = a[k][j]
-            for j in range(9):
-                if sum(a[j]) != 45 or len(set(a[j])) != 9 \
-                        or sum(b[j]) != 45 or len(set(b[j])) != 9:
-                    종료 = 1
-                    break
-            if 종료 == 0:
-                for j in range(9):
-                    for k in range(9):
-                        if k == 8:
-                            print(a[j][k])
-                        else:
-                            print(a[j][k], end='')
-                print()
-        elif Count < 5 and 종료 == 0:
-            for l in range(3):
-                for j in range(3):
-                    check = 0
-                    Sum = 0
-                    idx1, idx2 = 0, 0
-                    for k in range(3):
-                        for t in range(3):
-                            Sum += a[3*l+k][3*j+t]
-                            if a[3*l+k][3*j+t] == 0:
-                                check += 1
-                                idx1, idx2 = k, t
-                    if check == 1:
-                        a[3 * l + idx1][3 * j + idx2] = 45 - Sum
-                        if a[3 * l + idx1][3 * j + idx2] <= 0:
-                            종료 = 1
-                            break
-                        Count += 1
-            if Count == 5 and 종료 == 0:
-                b = [[0 for _ in range(9)] for _ in range(9)]
-                for j in range(9):
-                    for k in range(9):
-                        b[j][k] = a[k][j]
-                for j in range(9):
-                    if sum(a[j]) != 45 or len(set(a[j])) != 9 \
-                            or sum(b[j]) != 45 or len(set(b[j])) != 9:
-                        종료 = 1
-                        break
-                if 종료 == 0:
-                    for j in range(9):
-                        for k in range(9):
-                            if k == 8:
-                                print(a[j][k])
-                            else:
-                                print(a[j][k], end='')
-                    print()
-    if 종료 == 1 or Count < 5:
-        print('Could not complete this grid.')
-        print()
+    else:
+        print("Could not complete this grid.")
+    print()
