@@ -25,6 +25,8 @@ while True:
     result = n
     if n == 0:
         break
+    elif n == 1:
+        print(0)
     else:
         for i in 소인수분해(n):
             result = result * (i-1) // i
